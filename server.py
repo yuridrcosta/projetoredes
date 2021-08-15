@@ -1,25 +1,43 @@
 #!/usr/bin/python
 
 import socket
+import threading
+import imageProcessing
 
-address = ("localhost", 20000)
+IP = "localhost"
+PORT = 20000
+DATA_SIZE = 2048
 
-# Create sockets
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# Connect sockets
-server_socket.bind(address)
-server_socket.listen(1)
-server_input, address = server_socket.accept()
-print "Nova conexao recebida de ", address
-
-# Print
-while True:
-    response = server_input.recv(1024)
+def handle_client(connection,address):
+  print(f'Nova conexão recebida de {address}')
+  while True:
+    response = connection.recv(DATA_SIZE)
     response = response.rstrip()
-    if (response != "sair"):
-		print "Mensagem do cliente:", response
-    else:
-		server_socket.close()
-		break
+    if response == '!SAIR':
+      break
+    print(f'[{address}] {response}')
+    person, message = imageProcessing.parseProtocol(response)
+    imageProcessing.writeMessageInImage(person,message)
+    
+    img_file = open(f"serverside_IMG_{imageProcessing.getTemporaryId(person,text)}.png".'rb')
+    img_data = img_file.read(DATA_SIZE)
+    while img_data:
+      connection.send(image_data)
+      img_data = img_file.read(DATA_SIZE)
+      
+  connection.close()
 
+def main():
+  address = (IP, PORT)
+  server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+
+  server_socket.bind(address)
+  server_socket.listen()
+  while True:
+    client_connection, client_address = server_socket.accept()
+    thread = threading.Thread(target =handle_client,args=(client_connection,client_address))
+    thread.start()
+    print(f"Número de conexões ativas: {threading.activeCount()-1}")
+
+if __name__ == '__main__':
+  main()
