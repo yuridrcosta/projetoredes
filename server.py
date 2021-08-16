@@ -3,31 +3,37 @@
 import socket
 import threading
 import imageProcessing
+import protocol
 
 IP = "localhost"
-PORT = 20000
+PORT = 10000
 DATA_SIZE = 2048
+ENCODE_FORMAT = 'utf-8'
 
 def handle_client(connection,address):
   print(f'Nova conexão recebida de {address}')
   while True:
-    response = connection.recv(DATA_SIZE)
+    response = connection.recv(DATA_SIZE).decode(ENCODE_FORMAT)
     response = response.rstrip()
     if response == '!SAIR':
       break
     print(f'[{address}] {response}')
-    person, message = imageProcessing.parseProtocol(response)
+    person, message, status = protocol.parseProtocol(response)
+    connection.send(status.encode(ENCODE_FORMAT))
+    if (person == None and message == None):
+      break
     imageProcessing.writeMessageInImage(person,message)
     
-    img_file = open(f"serverside_IMG_{imageProcessing.getTemporaryId(person,text)}.png".'rb')
+    img_file = open(f"serverside_IMG_{imageProcessing.getTemporaryId(person,message)}.png",'rb')
     img_data = img_file.read(DATA_SIZE)
     while img_data:
-      connection.send(image_data)
+      connection.send(img_data)
       img_data = img_file.read(DATA_SIZE)
-      
+
   connection.close()
 
 def main():
+  print('Servidor iniciado')
   address = (IP, PORT)
   server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 
