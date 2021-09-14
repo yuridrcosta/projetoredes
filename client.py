@@ -3,8 +3,10 @@
 import socket
 import re
 
+
+
 IP = "localhost"
-PORT = 10000
+PORT = 40001
 DATA_SIZE = 2048
 ENCODE_FORMAT = 'utf-8'
 
@@ -21,13 +23,13 @@ def main():
         text = input("Informe o protocolo ou digite '!SAIR' para desconectar: \n >")
         text = re.sub("\n",'',text)
         if (text == "!SAIR"):
-            client_socket.send(text)
+            client_socket.send(text.encode(ENCODE_FORMAT))
             client_socket.close()
             break
         while(text.replace("\s",'') != ''):
             full_protocol = full_protocol + text +'\n'
             text = input(" >")
-            text = re.sub("\n",'',text)
+            #text = re.sub("\n",'',text)
 
         full_protocol = full_protocol + '\n'
         client_socket.send(full_protocol.encode(ENCODE_FORMAT))
@@ -42,10 +44,8 @@ def main():
             img_file = open(f'{filename}.png','wb')
             # O servidor envia uma imagem que é maior que a capacidade de envio por meio
             # dos sockets (2048 bytes), por isso, quebramos a imagem em pedaços e enviamos.
-            img_chunk = client_socket.recv(DATA_SIZE)
-            while img_chunk:
-                img_file.write(img_chunk)
-                img_chunk = client_socket.recv(DATA_SIZE)
+            img_chunk = client_socket.recv(100000)
+            img_file.write(img_chunk)
             img_file.close()
     print('Conexão finalizada')
 

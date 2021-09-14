@@ -6,7 +6,7 @@ import imageProcessing
 import protocol
 
 IP = "localhost"
-PORT = 10000
+PORT = 40001
 DATA_SIZE = 2048
 ENCODE_FORMAT = 'utf-8'
 
@@ -18,11 +18,11 @@ def handle_client(connection,address):
     if response == '!SAIR':
       break
     print(f'[{address}] {response}')
-    person, message, status = protocol.parseProtocol(response)
+    person, message, status, color = protocol.parseProtocol(response)
     connection.send(status.encode(ENCODE_FORMAT))
     if (person == None and message == None):
       break
-    imageProcessing.writeMessageInImage(person,message)
+    imageProcessing.writeMessageInImage(person,message,color)
     
     img_file = open(f"serverside_IMG_{imageProcessing.getTemporaryId(person,message)}.png",'rb')
     img_data = img_file.read(DATA_SIZE)
