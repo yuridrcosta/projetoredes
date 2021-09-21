@@ -5,8 +5,8 @@ import threading
 import imageProcessing
 import protocol
 
-IP = "localhost"
-PORT = 40001
+IP = ""
+PORT = 20000
 DATA_SIZE = 2048
 ENCODE_FORMAT = 'utf-8'
 
@@ -39,6 +39,7 @@ def main():
 
   server_socket.bind(address)
   server_socket.listen()
+
   while True:
     client_connection, client_address = server_socket.accept()
     thread = threading.Thread(target =handle_client,args=(client_connection,client_address))

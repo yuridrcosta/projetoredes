@@ -6,15 +6,15 @@ import re
 
 
 IP = "localhost"
-PORT = 40001
+PORT = 20000
 DATA_SIZE = 2048
 ENCODE_FORMAT = 'utf-8'
 
 def main():
     address = (IP, PORT)
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print(f'Conectado ao servidor {address}')
     client_socket.connect(address)
+    print(f'Conectado ao servidor {address}')
 
     # Echo
     while True:
