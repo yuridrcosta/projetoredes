@@ -17,7 +17,7 @@ def handle_client(connection,address):
     response = response.rstrip()
     if response == '!SAIR':
       break
-    print(f'[{address}] {response}')
+    print(f'[{address}]\n{response}')
     person, message, status, color = protocol.parseProtocol(response)
     connection.send(status.encode(ENCODE_FORMAT))
     if (person == None and message == None):
@@ -30,10 +30,11 @@ def handle_client(connection,address):
       connection.send(img_data)
       img_data = img_file.read(DATA_SIZE)
 
+  print(f'Conexão encerrada com {address}\n')
   connection.close()
 
 def main():
-  print('Servidor iniciado')
+  print('\nServidor iniciado\n')
   address = (IP, PORT)
   server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 
@@ -44,7 +45,7 @@ def main():
     client_connection, client_address = server_socket.accept()
     thread = threading.Thread(target =handle_client,args=(client_connection,client_address))
     thread.start()
-    print(f"Número de conexões ativas: {threading.activeCount()-1}")
+    print(f"Número de conexões ativas: {threading.activeCount()-1}\n")
 
 if __name__ == '__main__':
   main()
