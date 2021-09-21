@@ -44,7 +44,7 @@ git clone https://github.com/yuridrcosta/projetoredes.git
 
 Acesse o diretório contendo o projeto. Para o linux, é possível acessar por meio do seguinte comando:
 ````
-cd projetoredes
+cd projetoredes/src/
 ````
 Em seguida instale os pacotes necessários por meio do seguinte comando:
 ````
