@@ -1,4 +1,5 @@
-# Projeto para disciplina Redes de Computadores do curso de Engenharia de Computação na UFAL
+# Projeto para disciplina Redes de Computadores 
+## Curso de Engenharia de Computação da Universidade Federal de Alagoas (UFAL)
 ### Grupo
 **Alunos:** João Paulo Agostinho da Silva (jpas@ic.ufal.br) - Yuri Dimitri Ramos Costa (ydrc@ic.ufal.br) <br/>
 <br/>
