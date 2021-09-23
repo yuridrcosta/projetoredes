@@ -11,7 +11,10 @@ DATA_SIZE = 2048
 ENCODE_FORMAT = 'utf-8'
 
 def main():
-    address = (IP, PORT)
+    ip_address = input('Informe o endereço IP para a conexão ou pressione ENTER para utilizar \'localhost\': \n >')
+    if ip_address == '' or ip_address == ' ':
+        ip_address = IP
+    address = (ip_address, PORT)
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect(address)
     print(f'\nConectado ao servidor {address}')
