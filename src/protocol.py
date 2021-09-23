@@ -18,6 +18,13 @@ def parseProtocol(response):
     
     splitted_response = response.split("\n")
 
+    if len(splitted_response)<3:
+        message = None
+        person = None
+        color = None
+        status = '403 Formato inválido'
+        return person, message, status,color
+
     client_command = splitted_response[0]
     person = splitted_response[1].split(':')[1]
     color = splitted_response[2].split(':')[1]
