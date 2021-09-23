@@ -99,6 +99,14 @@ COR DO TEXTO:VERDE
 - Se algum dos campos for preenchido incorretamente, o erro específico será exibido.
 - Se todos os campos forem preenchidos corretamente, será necessário nomear a imagem (somente pelo lado do cliente, no lado do servidor um nome automático é gerado para a imagem). 
 
+### Respostas do Servidor
+
+- **200 OK**: Não houve nenhum erro.
+- **400 Comando inválido**: O comando não está disponível.
+- **401 Pessoa não disponível**: O personagem escolhido não está disponível ou não foi escrito da maneira correta.
+- **402 Cor não disponível**: A cor de texto especificada não está disponível.
+- **403 Formato inválido**: O formato de protocolo é inválido (mínimo de 1 linha para comando, 2 linhas com parâmetros e 1 linha vazia). Essa verificação ocorre antes das outras verificações.
+
 
 
 
