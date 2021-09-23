@@ -68,9 +68,9 @@ python3 server.py
 ````
 python3 client.py
 ````
-Em seguida a seguinte mensagem será apresentada:
+Em seguida digite o endereço IP do servidor. A porta 20000 será utilizada. Após a escolha do endereço IP, digite o protocolo conforme a imagem abaixo:
 
-![image](https://user-images.githubusercontent.com/38661715/134238966-44e2bb78-5104-41ea-88c6-a37ffc435e38.png)
+![image](https://user-images.githubusercontent.com/38661715/134457345-73b7d92a-28b9-4701-8b66-7cad32cc0b68.png)
 
 ## Informações adicionais
 
